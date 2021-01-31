@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from "@angular/common/http";
+import { TranslateService } from "@ngx-translate/core";
+import { TranslationKeys } from "../constants/translations-keys.constants";
 
 export class ErrorHandlerService {
-    public constructor() {   
+    public constructor(private translationService: TranslateService) {   
     }
 
     public handleError(err: HttpErrorResponse) {
@@ -11,43 +13,44 @@ export class ErrorHandlerService {
         } else {
             switch(err.status) {
                 case 400:
-                    errorMessage = 'Bad Request';
+                    errorMessage = TranslationKeys.HTTP_BAD_REQUEST_ERROR;
                     break;
 
                 case 401:
-                    errorMessage = 'You need to log in to do this action';
+                    errorMessage = TranslationKeys.HTTP_UNAUTHORIZED_ERROR;
                     break;
 
                 case 403:
-                    errorMessage = 'You don\'t have permission to access the requested resource.';
+                    errorMessage = TranslationKeys.HTTP_FORBIDDEN_ERROR;
 
                 case 404:
-                    errorMessage = 'The requested resource does not exist.';
+                    errorMessage = TranslationKeys.HTTP_NOT_FOUND_ERROR;
                     break;
 
                 case 412:
-                    errorMessage = 'Precondition Failed';
+                    errorMessage = TranslationKeys.HTTP_PRECONDITION_FAILED_ERROR;
                     break;
 
                 case 500:
-                    errorMessage = 'Internal Server Error';
+                    errorMessage = TranslationKeys.HTTP_INTERNAL_SERVER_ERROR;
                     break;
 
                 case 503:
-                    errorMessage = 'The requested service is not available.';
+                    errorMessage = TranslationKeys.HTTP_NOT_AVAILABLE_ERROR;
                     break;
 
                 case 422:
-                    errorMessage = 'Validation Error!';
+                    errorMessage = TranslationKeys.HTTP_VALIDATION_ERROR;
                     break;
 
                 default:
-                    errorMessage = 'Something went wrong!';
+                    errorMessage = TranslationKeys.HTTP_DEFAULT_ERROR;
+                    break;
             }
         }
 
         if(errorMessage) {
-            console.log(errorMessage);
+            console.log(this.translationService.instant(errorMessage));
         }
     }
 }

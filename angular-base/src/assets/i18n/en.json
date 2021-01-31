@@ -1,3 +1,13 @@
 {
-    
+    "httpErrors": {
+        "badRequest": "Bad Request",
+        "unauthorized": "You need to log in to do this action",
+        "forbidden": "You don't have permission to access the requested resource.",
+        "notFound": "The requested resource does not exist.",
+        "preconditionFailed": "Precondition Failed",
+        "internalError": "Internal Server Error",
+        "notAvailable": "The requested service is not available.",
+        "validationError": "Validation Error!",
+        "defaultError": "Something went wrong!"
+    }
 }
